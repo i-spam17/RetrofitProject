@@ -1,4 +1,4 @@
-package hw5;
+package hw5.utils;
 
 import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
