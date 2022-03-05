@@ -77,7 +77,7 @@ public class ProductPositiveTest {
 
     @SneakyThrows
     @Test
-    void getSpecificProduct() {
+    void getSpecificProductTest() {
         Response<JsonProduct> resp = productService.getSpecificProduct(productID).execute();
         assertThat(resp.isSuccessful(), CoreMatchers.is(true));
         assert resp.body() != null;
