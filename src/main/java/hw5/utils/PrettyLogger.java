@@ -1,12 +1,14 @@
 package hw5.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import hw5.dto.response.JsonProduct;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
 import org.slf4j.*;
 
 import java.io.IOException;
+import java.io.Writer;
 
 public class PrettyLogger implements Interceptor {
     ObjectMapper mapper = new ObjectMapper();

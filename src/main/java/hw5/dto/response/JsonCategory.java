@@ -24,5 +24,13 @@ public class JsonCategory {
     @JsonProperty("products")
     public List<JsonProduct> jsonProducts = new ArrayList<JsonProduct>();
 
+    @Override
+    public String toString() {
+        return "JsonCategory{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", jsonProducts=" + jsonProducts +
+                '}';
+    }
 }
 

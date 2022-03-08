@@ -1,5 +1,6 @@
 package hw5;
 
+import db.model.Categories;
 import hw5.api.CategoryService;
 import hw5.dto.response.JsonCategory;
 import hw5.utils.RetrofitUtil;
@@ -25,5 +26,7 @@ public class CategoryPositiveTest {
     void getCategoryPositiveTest() {
         Response<JsonCategory> resp = categoryService.getCategory(100).execute();
         assertThat(resp.isSuccessful(), CoreMatchers.is(true));
+
+
     }
 }
