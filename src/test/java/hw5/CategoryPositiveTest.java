@@ -1,11 +1,12 @@
 package hw5;
 
-import db.model.Categories;
 import hw5.api.CategoryService;
 import hw5.dto.response.JsonCategory;
+import hw5.utils.Helpers;
 import hw5.utils.RetrofitUtil;
 import lombok.SneakyThrows;
 import org.hamcrest.CoreMatchers;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import retrofit2.Response;
@@ -26,7 +27,6 @@ public class CategoryPositiveTest {
     void getCategoryPositiveTest() {
         Response<JsonCategory> resp = categoryService.getCategory(100).execute();
         assertThat(resp.isSuccessful(), CoreMatchers.is(true));
-
-
+        Assertions.assertTrue(Helpers.isCategoryExist(100));
     }
 }

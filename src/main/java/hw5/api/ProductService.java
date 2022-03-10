@@ -1,7 +1,6 @@
 package hw5.api;
 
 import hw5.dto.response.Json400Error;
-import hw5.dto.response.Json404Error;
 import hw5.dto.response.JsonProduct;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -27,17 +26,14 @@ public interface ProductService {
     Call<ResponseBody> negativeUpdateProduct(@Body File  newJsonProduct);
 
     @GET("products/{id}")
-    Call<JsonProduct> getSpecificProduct(@Path("id") int id);
+    Call<JsonProduct> getSpecificProduct(@Path("id") long id);
 
     @GET("products/{id}")
     Call<Json400Error> negativeGetSpecificProduct(@Path("id") Object id);
 
-    @GET("products/{id}")
-    Call<Json404Error> checkDeleteGetSpecificProduct(@Path("id") Object id);
-
     @DELETE("products/{id}")
     @Headers("accept: */*")
-    Call<Void> deleteProduct(@Path("id") int id);
+    Call<Void> deleteProduct(@Path("id") long id);
 
     @DELETE("products/{id}")
     @Headers("accept: */*")

@@ -1,4 +1,4 @@
-package hw5;
+package hw5.utils;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -11,11 +11,9 @@ import java.io.InputStream;
 
 public class SqlUtils {
     static SqlSessionFactory sqlSessionFactory = null;
-    static final Class CLASS_LOCK = SqlUtils.class;
+    static final Class<SqlUtils> CLASS_LOCK = SqlUtils.class;
 
-    private SqlUtils(){}
-
-    static SqlSessionFactory initSqlSessionFactory(){
+    static void initSqlSessionFactory() {
         String resource = "mybatis-config.xml";
         InputStream inputStream = null;
 
@@ -25,15 +23,14 @@ public class SqlUtils {
             e.printStackTrace();
         }
         synchronized (CLASS_LOCK) {
-            if (sqlSessionFactory == null){
+            if (sqlSessionFactory == null) {
                 sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
             }
         }
-    return sqlSessionFactory;
     }
-    
-    static SqlSession openSqlSession(){
-        if (sqlSessionFactory == null){
+
+    static SqlSession openSqlSession() {
+        if (sqlSessionFactory == null) {
             initSqlSessionFactory();
         }
         return sqlSessionFactory.openSession();

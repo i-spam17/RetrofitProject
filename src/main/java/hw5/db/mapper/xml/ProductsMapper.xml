@@ -138,6 +138,9 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
+  <insert id="insertProductByID">
+    INSERT INTO products (id, title, price, category_id) values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{price,jdbcType=INTEGER}, #{category_id,jdbcType=BIGINT})
+  </insert>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="db.model.Products" useGeneratedKeys="true">
     <!--
       WARNING - @mbg.generated

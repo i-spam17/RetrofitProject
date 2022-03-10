@@ -2,10 +2,10 @@ package hw5;
 
 import hw5.api.ProductService;
 import hw5.dto.response.Json400Error;
+import hw5.utils.Helpers;
 import hw5.utils.RetrofitUtil;
 import lombok.SneakyThrows;
 import okhttp3.ResponseBody;
-import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -16,13 +16,9 @@ import retrofit2.Response;
 import java.io.File;
 import java.util.stream.Stream;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-
 public class ProductsNegativeTest {
     static ProductService productService;
     static int productID;
-
-    static int testProductID;
 
     @SneakyThrows
     @BeforeAll
@@ -35,11 +31,11 @@ public class ProductsNegativeTest {
     @ParameterizedTest
     @ValueSource(strings =
             {"src/test/resources/createProductData/AddOneField.json",
-            "src/test/resources/createProductData/ChangeNameField.json",
-            "src/test/resources/createProductData/ChangeTypeField.json",
-            "src/test/resources/createProductData/Empty.json",
-            "src/test/resources/createProductData/NoOneField.json",
-            "src/test/resources/createProductData/NullField.json"})
+                    "src/test/resources/createProductData/ChangeNameField.json",
+                    "src/test/resources/createProductData/ChangeTypeField.json",
+                    "src/test/resources/createProductData/Empty.json",
+                    "src/test/resources/createProductData/NoOneField.json",
+                    "src/test/resources/createProductData/NullField.json"})
     void createProductTest(String path) {
         Response<ResponseBody> resp = productService
                 .negativeCreateProduct(new File(path))
@@ -76,7 +72,7 @@ public class ProductsNegativeTest {
 
     @SneakyThrows
     @ParameterizedTest
-    @MethodSource ("getSpecificProductTestData")
+    @MethodSource("getSpecificProductTestData")
     void getSpecificProductTest(Object obj) {
         Response<Json400Error> resp = productService.negativeGetSpecificProduct(obj).execute();
         Assertions.assertEquals(400, resp.code());
@@ -84,7 +80,7 @@ public class ProductsNegativeTest {
 
     @SneakyThrows
     @ParameterizedTest
-    @MethodSource ("getSpecificProductTestData")
+    @MethodSource("getSpecificProductTestData")
     void deleteSpecificProductTest(Object obj) {
         Response<Void> resp = productService.negativeDeleteProduct(obj).execute();
         Assertions.assertEquals(400, resp.code());
@@ -93,10 +89,7 @@ public class ProductsNegativeTest {
     @SneakyThrows
     @AfterAll
     static void tearDown() {
-        Response<Void> resp = productService.deleteProduct(productID).execute();
-        assertThat(resp.isSuccessful(), CoreMatchers.is(true));
-
-        resp = productService.deleteProduct(testProductID).execute();
-        assertThat(resp.isSuccessful(), CoreMatchers.is(true));
+        Assertions.assertFalse(Helpers.isProductExist(productID));
+        Helpers.deletedProduct((long)productID);
     }
 }

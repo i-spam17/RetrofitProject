@@ -34,7 +34,7 @@ public class CategoryNegativeTest {
 
     @SneakyThrows
     @ParameterizedTest
-    @MethodSource ("getCategoryNegativeTestData")
+    @MethodSource("getCategoryNegativeTestData")
     void getCategoryNegativeTest(Object obj) {
         Response<Json404Error> resp = categoryService.getCategory(obj).execute();
         Assertions.assertEquals(404, resp.code());
