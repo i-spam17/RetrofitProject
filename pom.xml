@@ -184,7 +184,7 @@
               </property>
               <property>
                 <name>allure.results.directory</name>
-                <value>C:\ProgramData\Jenkins\.jenkins\workspace\test-backend2\target\allure-results</value>
+                <value>C:\ProgramData\Jenkins\.jenkins\workspace\test-backend2\allure-results</value>
               </property>
             </systemProperties>
           </configuration>
