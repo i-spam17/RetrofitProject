@@ -226,6 +226,7 @@
           <executions>
             <execution>
               <id>Generate MyBatis Artifacts</id>
+              <phase>process-resources</phase>
               <goals>
                 <!--                            disabled generation mybatis db provider-->
                 <goal>generate</goal>
