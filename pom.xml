@@ -182,6 +182,10 @@
                 <name>junit.jupiter.extensions.autodetection.enabled</name>
                 <value>true</value>
               </property>
+              <property>
+                <name>allure.results.directory</name>
+                <value>C:\ProgramData\Jenkins\.jenkins\workspace\test-backend2\allure-results</value>
+              </property>
             </systemProperties>
           </configuration>
           <dependencies>
